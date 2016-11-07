@@ -1,10 +1,13 @@
 * { 
 	font-family: 'Lato', sans-serif;
 	box-sizing: border-box;
-	font-size: 14px;
+	font-size: 16px;
 }
 body {
 	background-color: #5fa3e6 !important;
+}
+.app {
+	margin-top: 25vh;
 }
 .title {
 	text-align: center;
@@ -13,31 +16,21 @@ body {
 	font-weight: 400;
 }
 .search {
-	margin: auto;
+	width: 50%;
+	min-width: 700px;
+	position: relative;
+	margin: 50px auto;
 	text-align: center;
 }
-.list-item.active {
-	background-color: #ededed;
-}
-.search-box {
-	width: 475px;
-	height: 40px;
-	padding-left: 20px;
-	border: none;
-	border-radius: 0px 5px 0px 0px;
-	outline: none;
-}
-.search-and-list {
-	float: left;
-}
-.list-conatiner {
-	position: absolute;
+.test {
+	display: inline;
 }
 .select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 	box-shadow: none;
+	width: 20%;
 	height: 40px;
 	padding-left: 20px;
 	padding-right: 30px;
@@ -47,16 +40,35 @@ body {
 	background-position: right center;
 	border-radius: 5px 0px 0px 5px;
 	outline: none;
-	float: left;
 	border: none;
 	cursor: pointer;
 	background-color: #f8f8f8;
 }
+.list-container {
+	position: absolute;
+	width: 80%;
+	top: 40px;
+	right: 0px;
+}
+.search-box {
+	display: inline-block;
+	width: 80%;
+	height: 40px;
+	padding-left: 20px;
+	border: none;
+	border-radius: 0px 5px 0px 0px;
+	outline: none;
+}
 .list-item {
+	width: 100%;
 	text-align: left;
-	position: relative;
+	top: 40px;
+	right: 0px;
 	background-color: white;
 	padding: 10px;
+}
+.list-item.active {
+	background-color: #ededed;
 }
 .list-item:hover {
 	background-color: #ededed;
@@ -79,4 +91,3 @@ body {
 	color: #333;
 	text-decoration: none;
 }
-

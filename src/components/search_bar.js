@@ -189,18 +189,16 @@ class SearchBar extends Component {
 					<option value="LOAN">Loans</option>
 					<option value="MORTGAGE">Mortgages</option>
 				</select>
-				<div className = "search-and-list">
-					<input
-						placeholder="Enter Financial Product"
-						className="search-box"
-						onFocus={() => this.setState({hidden: false})}
-						onChange={this.updateList}
-						onKeyDown={this.toggleActive}
-						value={this.state.term}
-					/>
-					<div className="list-container">
-						{this.getList(this.state.displayData)}
-					</div>
+				<input
+					placeholder="Enter Financial Product"
+					className="search-box"
+					onFocus={() => this.setState({hidden: false})}
+					onChange={this.updateList}
+					onKeyDown={this.toggleActive}
+					value={this.state.term}
+				/>
+				<div className="list-container">
+					{this.getList(this.state.displayData)}
 				</div>
 			</div>
 		)
