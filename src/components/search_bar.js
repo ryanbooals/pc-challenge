@@ -38,12 +38,7 @@ class SearchBar extends Component {
 		})
 	}
 	getList(listData) {
-		// getList is called upon rendering the application
-
-		//We receive the list sorted by Regex Expression and apply the filter that the
-		//user has selected
-
-		//Next we display the list of filtered and sorted items
+		// getList is called upon rendering the application and rerenders everytime state is changed
 
 		if (!this.state.hidden) {
 
@@ -153,7 +148,7 @@ class SearchBar extends Component {
 		}
 	}
 
-	// Changed filter based on user input from select
+	// Changed filter based on user input from select or when a new character is entered
 	setFilter(event) {
 		if (typeof event !== 'undefined') {
 			this.setState({filterTerm: event.target.value}, () => {this.filteringFunc()})
@@ -163,6 +158,7 @@ class SearchBar extends Component {
 		}
 	}
 
+	// Changed filter based on user input from select
 	filteringFunc() {
 		const listData = _.filter(this.state.sortedList, (item) => {
 			if (this.state.filterTerm === 'all') {

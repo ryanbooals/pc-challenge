@@ -92,7 +92,10 @@ body {
 	text-decoration: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 725px) {
+	.app {
+		margin-top: 10vh;
+	}
 	.select {
 		display: none;
 	}
