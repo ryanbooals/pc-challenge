@@ -91,3 +91,26 @@ body {
 	color: #333;
 	text-decoration: none;
 }
+
+@media (max-width: 600px) {
+	.select {
+		display: none;
+	}
+	.search-box {
+		width: 100%;
+		min-width: 100%;
+		border-radius: 5px 5px 0px 0px;
+	}
+	.search {
+		width: 100%;
+		min-width: 100%;
+		text-align: center;
+	}
+	.list-container {
+		position: absolute;
+		width: 100%;
+		top: 40px;
+		right: 0px;
+	}
+}
+
