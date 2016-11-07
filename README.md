@@ -1,4 +1,4 @@
-# Personal Capitall Autocomplete
+# PC Autocomplete
 
 This is a single page web application build with React.Js and is currently in deployement at https://pc-test.herokuapp.com/.
 ### How to build

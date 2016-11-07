@@ -16,6 +16,7 @@ class SearchBar extends Component {
 			trueData: [],
 			sortedList: [],
 			displayData: [],
+			tempTerm: '',
 			term: '',
 			hidden: true,
 			filterTerm: 'all'
@@ -78,7 +79,7 @@ class SearchBar extends Component {
 
 	//Update list is called when a user changes the input field. This is the autocomplete funcationality.
 	updateList(event) {
-		this.setState({term: event.target.value, hidden: false}, () => {
+		this.setState({term: event.target.value, tempTerm:event.target.value, hidden: false}, () => {
 			// If there is no search term don't display anything. This is for intial render as well as
 			// when a user deletes the entire string
 			if (this.state.term === '') {
@@ -140,12 +141,9 @@ class SearchBar extends Component {
 			})
 		}
 		else if (event.keyCode == '13') {
-			this.setState({
-				term: this.state.displayData[this.state.activeIndex].name,
-				hidden: true
-			})
-			window.open(this.state.displayData[this.state.activeIndex].url)
-		}
+			this.setState({hidden: true})
+			window.open(this.state.displayData[this.state.activeIndex].url)			
+			}
 	}
 
 	// Changed filter based on user input from select or when a new character is entered
@@ -170,7 +168,8 @@ class SearchBar extends Component {
 		})
 		this.setState({
 			displayData: listData,
-			activeIndex: -1
+			activeIndex: -1,
+			term: this.state.tempTerm
 		})
 	}
 
