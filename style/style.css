@@ -17,13 +17,15 @@ body {
 	text-align: center;
 }
 .list-item.active {
-	background-color: #e2e2e2;
+	background-color: #ededed;
 }
 .search-box {
 	width: 475px;
 	height: 40px;
 	padding-left: 20px;
 	border: none;
+	border-radius: 0px 5px 0px 0px;
+	outline: none;
 }
 .search-and-list {
 	float: left;
@@ -44,48 +46,37 @@ body {
 	background-size: 15px;
 	background-position: right center;
 	border-radius: 5px 0px 0px 5px;
+	outline: none;
 	float: left;
 	border: none;
 	cursor: pointer;
-}
-.go {
-	height: 40px;
-	float: left;
-	padding: 0px 20px;
-	border-radius: 0px 5px 5px 0px;
-	background-color: orange;
-	border: none;
-	cursor: pointer;
+	background-color: #f8f8f8;
 }
 .list-item {
 	text-align: left;
 	position: relative;
 	background-color: white;
-	width: 475px;
 	padding: 10px;
 }
 .list-item:hover {
-	background-color: #e2e2e2;
+	background-color: #ededed;
 	cursor: pointer;
 }
 .list-item:last-child {
 	border-radius: 0px 0px 5px 5px;
 }
 .list-item:first-child {
-	border-top: 1px solid #999;
+	border-top: 1px solid #ededed;
 }
 .item-type {
-	display: inline-block;
-	min-width: 120px;
-	text-align: center;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-right: 10px;
-	border-right: 1px solid #888;
+	font-size: .9em;
+	color: #fcc087;
+	float: right;
 }
 .item-name {
 	display: inline-block;
-	min-width: 390px;
+	width: 100%;
 	color: #333;
 	text-decoration: none;
 }
+

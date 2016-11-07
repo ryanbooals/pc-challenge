@@ -10,10 +10,12 @@ class SearchBar extends Component {
 		this.updateList = this.updateList.bind(this)
 		this.toggleActive = this.toggleActive.bind(this)
 		this.setFilter = this.setFilter.bind(this)
+		this.filteringFunc = this.filteringFunc.bind(this)
 		this.state = {
 			activeIndex: -1,
 			trueData: [],
 			sortedList: [],
+			displayData: [],
 			term: '',
 			hidden: true,
 			filterTerm: 'all'
@@ -40,15 +42,6 @@ class SearchBar extends Component {
 
 		//We receive the list sorted by Regex Expression and apply the filter that the
 		//user has selected
-
-		listData = _.filter(listData, (item) => {
-			if (this.state.filterTerm === 'all') {
-				return item
-			}
-			else if (item.type === this.state.filterTerm) {
-				return item
-			}
-		})
 
 		//Next we display the list of filtered and sorted items
 
@@ -80,7 +73,7 @@ class SearchBar extends Component {
 				}
 				return (
 					<div key={i} className={divClass} onClick={() => window.open(item.url)}>
-						<div className="item-name">{item.display}</div>
+						<div className="item-name">{item.display} <span className="item-type">{item.type.toLowerCase()}</span></div>
 					</div>
 				)
 			})
@@ -119,7 +112,7 @@ class SearchBar extends Component {
 				this.setState({
 					sortedList: filteredObjects,
 					activeIndex: -1
-				})
+				}, () => {this.filteringFunc()})
 			}
 		})
 	}
@@ -136,30 +129,55 @@ class SearchBar extends Component {
 				this.setState({
 					activeIndex: newIndex
 				}, () => {
-					this.setState({term: this.state.sortedList[newIndex].name})
+					this.setState({term: this.state.displayData[newIndex].name})
 				})
 			}
 		}
 		else if (event.keyCode == '40') {
 			newIndex++
-			if (newIndex === this.state.sortedList.length || newIndex === 10) {
+			if (newIndex === this.state.displayData.length || newIndex === 10) {
 				newIndex = 0
 			}
 			this.setState({
 				activeIndex: newIndex
 			}, () => {
-				this.setState({term: this.state.sortedList[newIndex].name})
+				this.setState({term: this.state.displayData[newIndex].name})
 			})
 		}
 		else if (event.keyCode == '13') {
-			window.open(this.state.sortedList[this.state.activeIndex].url)
+			this.setState({
+				term: this.state.displayData[this.state.activeIndex].name,
+				hidden: true
+			})
+			window.open(this.state.displayData[this.state.activeIndex].url)
 		}
 	}
 
 	// Changed filter based on user input from select
 	setFilter(event) {
-		this.setState({filterTerm: event.target.value})
+		if (typeof event !== 'undefined') {
+			this.setState({filterTerm: event.target.value}, () => {this.filteringFunc()})
+		}
+		else {
+			this.filteringFunc()
+		}
 	}
+
+	filteringFunc() {
+		const listData = _.filter(this.state.sortedList, (item) => {
+			if (this.state.filterTerm === 'all') {
+				return item
+			}
+			else if (item.type === this.state.filterTerm) {
+				return item
+			}
+		})
+		this.setState({
+			displayData: listData,
+			activeIndex: -1
+		})
+	}
+
 	render() {
 		return (
 			<div className="search">
@@ -181,10 +199,9 @@ class SearchBar extends Component {
 						value={this.state.term}
 					/>
 					<div className="list-container">
-						{this.getList(this.state.sortedList)}
+						{this.getList(this.state.displayData)}
 					</div>
 				</div>
-				<button className="go">Go!</button>
 			</div>
 		)
 	}
